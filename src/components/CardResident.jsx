@@ -5,21 +5,23 @@ const CardResident = ({ url }) => {
   const resident = useFetch(url);
   console.log(resident);
   return (
-    <article>
+    <article className="card">
       <header>
         <img src={resident?.image} alt={`image of ${resident?.name}`} />
-        <div>
-          <div className="circle"></div>
-          <span>{resident?.status}</span>
-        </div>
       </header>
-
-      <div>
+      <div className="card-info">
         <h3>{resident?.name}</h3>
+
+        <div className="card-status">
+          {
+            resident?.status ==='Alive' ? <div className="circleA"></div> : <div className="circleD"></div>
+          }
+          <span>{resident?.status === 'Alive'? 'Alive':'Dead'}</span>
+        </div>
         <ul>
-          <li><span>Species: </span>{resident?.species}</li>
-          <li><span>Origin: </span>{resident?.origin.name}</li>
-          <li><span>Eppisodes where appear: </span>{resident?.episode.length}</li>
+          <li><strong>Species: </strong>{resident?.species}</li>
+          <li><strong>Origin: </strong>{resident?.origin.name}</li>
+          <li><strong>Eppisodes where appear: </strong>{resident?.episode.length}</li>
         </ul>
       </div>
     </article>
